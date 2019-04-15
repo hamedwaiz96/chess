@@ -1,6 +1,7 @@
 require_relative "piece"
 
 class Board
+	attr_reader :rows
 	def initialize
 		rows = Array.new(8) {Array.new(8)}
 		@rows = rows
@@ -40,6 +41,15 @@ class Board
 		b = @rows[row2].delete_at(col2)
 		@rows[row1][col1] = b
 		@rows[row2][col2] = a
+	end
+
+	def valid_pos?(pos)
+		row, col = pos
+		if row > 7 || row < 0 || col > 7 || col < 0
+			return false
+		else
+			return true
+		end
 	end
 
 end
